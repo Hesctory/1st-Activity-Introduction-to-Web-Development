@@ -1,0 +1,482 @@
+/* ─── Reset & Base ──────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:        #f5f4f0;
+  --surface:   #ffffff;
+  --border:    #e0ddd6;
+  --text:      #1a1a1a;
+  --muted:     #888;
+  --accent:    #222;
+  --green:     #2e7d52;
+  --red:       #b0291e;
+  --amber:     #b07a1e;
+  --coin-25:   #c8a94a;
+  --coin-50:   #b0b0b0;
+  --coin-100:  #d4a843;
+  --radius:    10px;
+  --shadow:    0 2px 12px rgba(0,0,0,0.08);
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+h1 {
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+}
+
+.hidden { display: none !important; }
+
+/* ─── Selection View — Machine Shell ───────────────────────────────── */
+#selection-view {
+  max-width: 600px;
+  width: 100%;
+}
+
+.machine-frame {
+  background: #1c1c1c;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow:
+    0 24px 64px rgba(0,0,0,0.4),
+    inset 2px 0 0 rgba(255,255,255,0.04),
+    inset -2px 0 0 rgba(0,0,0,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.07);
+}
+
+/* ── Top bar ── */
+.machine-top-bar {
+  background: #111;
+  padding: 0.85rem 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #2a2a2a;
+}
+
+.machine-brand {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #ccc;
+  text-transform: uppercase;
+  font-style: normal;
+}
+
+.machine-brand em {
+  color: #6aff7a;
+  font-style: normal;
+}
+
+.machine-led {
+  font-size: 0.58rem;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.14em;
+  color: #6aff7a;
+  text-shadow: 0 0 8px rgba(106,255,122,0.55);
+}
+
+/* ── Glass panel ── */
+.machine-glass {
+  margin: 10px;
+  background: linear-gradient(170deg, #f3f2ee 0%, #e9e8e3 100%);
+  border-radius: 8px;
+  padding: 0.9rem;
+  border: 1px solid #2e2e2e;
+  box-shadow:
+    inset 0 3px 12px rgba(0,0,0,0.22),
+    inset 0 -1px 4px rgba(0,0,0,0.1);
+}
+
+#drink-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.6rem;
+}
+
+/* ── Drink cards ── */
+.drink-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.75rem 0.5rem 0.6rem;
+  background: #fff;
+  border: 1px solid #dcdbd6;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: center;
+  transition: transform 0.12s, border-color 0.12s, box-shadow 0.12s;
+  width: 100%;
+}
+
+.drink-card:hover {
+  transform: translateY(-2px);
+  border-color: #999;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
+.drink-card:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.drink-code {
+  position: absolute;
+  top: 5px;
+  right: 6px;
+  font-size: 0.52rem;
+  font-family: 'Courier New', monospace;
+  color: #bbb;
+  letter-spacing: 0.04em;
+}
+
+.drink-card img {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  margin-top: 0.2rem;
+}
+
+.drink-card .drink-name {
+  font-size: 0.72rem;
+  font-weight: 500;
+  line-height: 1.25;
+  color: #333;
+}
+
+.drink-card .drink-price {
+  font-size: 0.68rem;
+  color: #777;
+  font-weight: 600;
+}
+
+/* ── Bottom bar ── */
+.machine-bottom-bar {
+  background: #111;
+  padding: 0.8rem 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #2a2a2a;
+  gap: 1rem;
+}
+
+.machine-vents {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.machine-vents span {
+  display: block;
+  width: 44px;
+  height: 2px;
+  background: #2a2a2a;
+  border-radius: 1px;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.6);
+}
+
+.machine-coin-deco,
+.machine-tray-deco {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.machine-coin-slot {
+  width: 36px;
+  height: 3px;
+  background: #060606;
+  border-radius: 2px;
+  border: 1px solid #2e2e2e;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.7);
+}
+
+.machine-tray-slot {
+  width: 64px;
+  height: 5px;
+  background: #060606;
+  border-radius: 3px;
+  border: 1px solid #2e2e2e;
+  box-shadow: inset 0 1px 4px rgba(0,0,0,0.7);
+}
+
+.machine-deco-label {
+  font-size: 0.42rem;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.14em;
+  color: #3a3a3a;
+  text-transform: uppercase;
+}
+
+.load-error {
+  font-size: 0.85rem;
+  color: var(--red);
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 1rem;
+}
+
+/* ─── Payment View ──────────────────────────────────────────────────── */
+#payment-view {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  max-width: 420px;
+  width: 100%;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.payment-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+#btn-back {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.72rem;
+  color: var(--muted);
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+#btn-back:hover {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.payment-drink-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 1;
+  min-width: 0;
+}
+
+#payment-drink-img {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.payment-drink-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.payment-drink-price {
+  font-size: 0.75rem;
+  color: var(--muted);
+  display: block;
+}
+
+/* ─── Display ───────────────────────────────────────────────────────── */
+.display {
+  background: #0d1f0f;
+  color: #6aff7a;
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  font-family: 'Courier New', monospace;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.display-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #3a7a3a;
+}
+
+#display-amount {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+#display-message {
+  font-size: 0.7rem;
+  color: #5fd96a;
+  line-height: 1.4;
+  min-height: 2.4em;
+  transition: color 0.2s;
+}
+
+#display-message.success { color: #6aff7a; }
+#display-message.error   { color: #ff6a6a; }
+#display-message.warning { color: #ffd96a; }
+#display-message.info    { color: #5fd96a; }
+
+/* ─── Coins ─────────────────────────────────────────────────────────── */
+.coins-section h2 {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.6rem;
+}
+
+.coins-row {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.coin {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  font-weight: 700;
+  cursor: grab;
+  user-select: none;
+  border: 2px solid rgba(0,0,0,0.12);
+  transition: transform 0.15s, opacity 0.15s;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+  line-height: 1.2;
+}
+
+.coin:active { cursor: grabbing; }
+.coin.dragging { opacity: 0.4; transform: scale(0.9); }
+
+.coin[data-value="25"]  { background: var(--coin-25);  color: #5a3c00; }
+.coin[data-value="50"]  { background: var(--coin-50);  color: #333; }
+.coin[data-value="100"] { background: var(--coin-100); color: #5a3c00; }
+
+.coin-hint {
+  font-size: 0.6rem;
+  color: var(--muted);
+  margin-top: 0.4rem;
+}
+
+/* ─── Drop zone ─────────────────────────────────────────────────────── */
+#drop-zone {
+  border: 1.5px dashed var(--border);
+  border-radius: 7px;
+  padding: 0.9rem;
+  text-align: center;
+  font-size: 0.72rem;
+  color: var(--muted);
+  transition: background 0.15s, border-color 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-height: 60px;
+}
+
+#drop-zone.drag-over {
+  background: #f0f7f2;
+  border-color: #7ab87a;
+  color: #3a7a3a;
+}
+
+#drop-zone.coin-received {
+  background: #e8f5ea;
+  border-color: #5aad5a;
+}
+
+.drop-icon { font-size: 1.1rem; }
+
+/* ─── Actions ───────────────────────────────────────────────────────── */
+#btn-cancel {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+  color: var(--muted);
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+  align-self: flex-start;
+}
+
+#btn-cancel:hover {
+  border-color: var(--red);
+  color: var(--red);
+}
+
+/* ─── Dispense Tray ─────────────────────────────────────────────────── */
+#dispense-tray {
+  min-height: 70px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+#dispense-tray.show { opacity: 1; }
+
+.dispensed-drink {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  animation: dropIn 0.4s ease;
+}
+
+@keyframes dropIn {
+  from { transform: translateY(-20px); opacity: 0; }
+  to   { transform: translateY(0);     opacity: 1; }
+}
+
+/* ─── Loading skeleton ──────────────────────────────────────────────── */
+.skeleton {
+  background: linear-gradient(90deg, #dddbd6 25%, #e8e7e2 50%, #dddbd6 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.2s infinite;
+  border-radius: 6px;
+  height: 110px;
+  width: 100%;
+}
+
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ─── Responsive ────────────────────────────────────────────────────── */
+@media (max-width: 520px) {
+  #drink-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

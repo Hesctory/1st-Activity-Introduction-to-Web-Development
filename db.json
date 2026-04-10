@@ -1,0 +1,35 @@
+
+
+{
+    "comentary": "This file contains the data in the URL, that url takes long time to load, that's why I have created this db.json, tu run the activity. Json server is still not installed in this project, it won't work properly",
+    "record": {
+        "bebidas": [
+            {
+                "sabor":"Super Cola",
+                "preco":6,
+                "imagem":"https://www.clipartmax.com/png/small/332-3329236_fizzy-drinks-cola-carbonated-water-drink-can-cartoon-soda-can.png"},
+            {
+                "sabor":"Laranjone",
+                "preco":5.5,
+                "imagem":"https://www.clipartmax.com/png/small/325-3259261_cream-soda-crush-can.png"},
+            {
+                "sabor":"Super Cola Cereja",
+                "preco":6.25,
+                "imagem":"https://www.clipartmax.com/png/small/159-1598710_cherry-cola-cherry-cola-clipart.png"},
+            {
+                "sabor":"Água",
+                "preco":2,
+                "imagem":"https://www.clipartmax.com/png/small/24-245220_water-black-and-white-water-clipart-free-download-clip-water-bottle-clipart.png"},
+            {
+                "sabor":"Água com Gás",
+                "preco":2.25,
+                "imagem":"https://www.clipartmax.com/png/middle/234-2349287_squashed-stock-illustrations-118-squashed-stock-illustrations-soda-can-clipart.png"}
+        ]
+    },
+    "metadata": {
+        "id": "69d64173aaba882197d7779a",
+        "private": false,
+        "createdAt": "2026-04-08T11:52:19.741Z",
+        "name": "drinks"
+    }
+}

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Máquina de Refrigerante</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" />
+  <link rel="stylesheet" href="ui/style.css" />
+</head>
+<body>
+
+  <h1>Máquina de Refrigerante</h1>
+
+  <!--  Step 1: Drink Selection  -->
+  <section id="selection-view" aria-label="Selecione uma bebida">
+    <div class="machine-frame">
+
+      <!-- Brand + status strip -->
+      <div class="machine-top-bar">
+        <span class="machine-brand">FRIO<em>+</em></span>
+        <span class="machine-led" aria-live="polite">● SELECIONE</span>
+      </div>
+
+      <!-- Glass panel with drink grid -->
+      <div class="machine-glass">
+        <div id="drink-grid" role="list" aria-live="polite">
+          <div class="skeleton"></div>
+          <div class="skeleton"></div>
+          <div class="skeleton"></div>
+          <div class="skeleton"></div>
+          <div class="skeleton"></div>
+          <div class="skeleton"></div>
+          <div class="skeleton"></div>
+          <div class="skeleton"></div>
+        </div>
+      </div>
+
+      <!-- Bottom bar: vents / coin slot / tray -->
+      <div class="machine-bottom-bar">
+        <div class="machine-vents" aria-hidden="true">
+          <span></span><span></span><span></span>
+          <span></span><span></span><span></span>
+        </div>
+        <div class="machine-coin-deco" aria-hidden="true">
+          <div class="machine-coin-slot"></div>
+          <span class="machine-deco-label">MOEDAS</span>
+        </div>
+        <div class="machine-tray-deco" aria-hidden="true">
+          <div class="machine-tray-slot"></div>
+          <span class="machine-deco-label">PRODUTO</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!--  Step 2: Payment  -->
+  <main id="payment-view" class="hidden" role="main" aria-label="Pagamento">
+
+    <!-- Selected drink header + back button -->
+    <div class="payment-header">
+      <button id="btn-back" type="button" aria-label="Voltar à seleção">← Voltar</button>
+      <div class="payment-drink-info">
+        <img id="payment-drink-img" src="" alt="" />
+        <div>
+          <span id="payment-drink-name" class="payment-drink-name"></span>
+          <span id="payment-drink-price" class="payment-drink-price"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Display -->
+    <div class="display" aria-live="polite" aria-atomic="true">
+      <span class="display-label">Crédito inserido</span>
+      <span id="display-amount">R$ 0,00</span>
+      <span id="display-message" class="info">Insira moedas para pagar.</span>
+    </div>
+
+    <!-- Coins -->
+    <div class="coins-section">
+      <h2>Moedas — arraste até o slot</h2>
+      <div class="coins-row">
+        <div
+          class="coin"
+          data-value="25"
+          draggable="true"
+          role="button"
+          aria-label="Moeda de 25 centavos"
+          title="Arraste para inserir"
+        >25¢</div>
+
+        <div
+          class="coin"
+          data-value="50"
+          draggable="true"
+          role="button"
+          aria-label="Moeda de 50 centavos"
+          title="Arraste para inserir"
+        >50¢</div>
+
+        <div
+          class="coin"
+          data-value="100"
+          draggable="true"
+          role="button"
+          aria-label="Moeda de 1 real"
+          title="Arraste para inserir"
+        >R$1</div>
+      </div>
+      <p class="coin-hint">Arraste uma moeda para o slot abaixo</p>
+    </div>
+
+    <!-- Drop zone (coin slot) -->
+    <div
+      id="drop-zone"
+      role="region"
+      aria-label="Slot para moedas"
+      aria-dropeffect="copy"
+    >
+      <span class="drop-icon">⬇</span>
+      <span>Slot para moedas</span>
+    </div>
+
+    <!-- Cancel -->
+    <button id="btn-cancel" type="button" aria-label="Cancelar e devolver troco">
+      ✕ Cancelar / Troco
+    </button>
+
+    <!-- Dispense tray -->
+    <div id="dispense-tray" role="status" aria-live="assertive" aria-label="Bandeja de entrega"></div>
+
+  </main>
+
+  <script type = "module"src="./ui/ui.js"></script>
+
+</body>
+</html>
